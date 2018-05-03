@@ -21,3 +21,13 @@ T. Uslu, A. Mehler, D. Baumartz, A. Henlein, and W. Hemati, “fastSense: An Eff
   year           = 2018
 }
 ```
+
+## Using the REST API
+
+To use the fastSense REST API, perform a `POST` request to https://textimager.hucompute.org/fastsense/disambiguate with the following JSON data:
+
+```
+{
+	"inputText": "Your input text"
+}
+```
