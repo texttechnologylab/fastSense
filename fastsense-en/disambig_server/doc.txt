@@ -1,0 +1,45 @@
+Starten:
+python3 disambig_server.py --model ./best_model/ --worker_count 1
+
+worker_count ist die Anzahl der paralleleln Instanzen des neuronalen Netzes. Mehr Instanzen benötigen mehr RAM!
+
+---
+
+URL: /disambiguate
+Method: POST
+
+Body:
+[
+	[
+		[0, 5, "Hello", "UH", "", " "],
+		[6, 11, "World", "NNP", " ", ""],
+		[11, 12, "!", ".", " ", ""]
+	]
+]
+
+List aller Absätze.
+Jeder Absatz ist eine List bestehend aus Tokens.
+Jeder Token ist eine List bestehend aus:
+[Start Index, End Index, Token Wert, PoS Tag (Stanford/CoreNLP), Whitespace vor Token, Whitespace hinter Token]
+
+---
+
+Der Input wird nicht weiter überprüft, da die URL nur intern aufgerufen werden soll.
+
+---
+
+Rückgabe:
+
+[
+	{
+		"end": 11,
+		"start": 0,
+		"url": "https://en.wikipedia.org/wiki/\"Hello,_World!\"_program"
+	},
+	{
+		"end": 11,
+		"start": 6,
+		"url": "https://en.wikipedia.org/wiki/Olympic_Games"
+	}
+]
+
